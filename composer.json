@@ -1,6 +1,6 @@
 {
     "name": "row-bloom/mpdf-renderer",
-    "description": "row-bloom mpdf renderer driver",
+    "description": "row-bloom mPDF renderer driver",
     "keywords": [
         "pdf",
         "rendering"
