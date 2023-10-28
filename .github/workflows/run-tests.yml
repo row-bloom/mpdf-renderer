@@ -36,7 +36,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, libxml, zip, gd, iconv, fileinfo
+          extensions: dom, libxml, gd, fileinfo
           coverage: none
 
       - name: Setup problem matchers
