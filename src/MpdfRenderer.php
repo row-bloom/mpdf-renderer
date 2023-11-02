@@ -27,6 +27,10 @@ class MpdfRenderer implements RendererContract
 
     private Mpdf $mpdf;
 
+    public function __construct(protected ?Config $config = null)
+    {
+    }
+
     public function get(): string
     {
         return $this->rendering;
@@ -40,15 +44,14 @@ class MpdfRenderer implements RendererContract
             ->save($this->rendering);
     }
 
-    public function render(Html $html, Css $css, Options $options, Config $config): static
+    public function render(Html $html, Css $css, Options $options, Config $config = null): static
     {
         $this->html = $html;
         $this->css = $css;
         $this->options = $options;
+        $this->config = $config;
 
-        $this->mpdf = new Mpdf(
-            $this->getMargin(),
-        );
+        $this->mpdf = new Mpdf($this->getMargin());
 
         $this->setPageFormat();
         $this->setHeaderAndFooter();
