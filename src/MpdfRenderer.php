@@ -73,7 +73,7 @@ class MpdfRenderer implements RendererContract
             'rawHeader' => true,
             'rawFooter' => true,
             'printBackground' => false,
-            'preferCSSPageSize' => false,
+            'preferCssPageSize' => false,
             'landscape' => true,
             'format' => true,
             'width' => true,
