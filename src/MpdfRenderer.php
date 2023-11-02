@@ -49,7 +49,7 @@ class MpdfRenderer implements RendererContract
         $this->html = $html;
         $this->css = $css;
         $this->options = $options;
-        $this->config = $config;
+        $this->config = $config ?? $this->config;
 
         $this->mpdf = new Mpdf($this->getMargin());
 
