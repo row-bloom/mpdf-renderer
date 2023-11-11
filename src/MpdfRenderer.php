@@ -7,13 +7,13 @@ use Mpdf\Mpdf;
 use RowBloom\RowBloom\Config;
 use RowBloom\RowBloom\Fs\File;
 use RowBloom\RowBloom\Options;
-use RowBloom\RowBloom\Renderers\RendererContract;
+use RowBloom\RowBloom\Renderers\Contract as RenderersContract;
 use RowBloom\RowBloom\Renderers\Sizing\LengthUnit;
 use RowBloom\RowBloom\Renderers\Sizing\Margin;
 use RowBloom\RowBloom\Types\Css;
 use RowBloom\RowBloom\Types\Html;
 
-class MpdfRenderer implements RendererContract
+class MpdfRenderer implements RenderersContract
 {
     public const NAME = 'mPDF';
 

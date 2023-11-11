@@ -22,6 +22,9 @@ app()->get(Support::class);
 Requires:
 
 - PHP >= 8.1
+- ext-gd
+- ext-mbstring
+- ext-zlib
 
 ## Usage
 
