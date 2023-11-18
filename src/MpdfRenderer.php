@@ -70,8 +70,8 @@ class MpdfRenderer implements RenderersContract
     {
         return [
             'displayHeaderFooter' => true,
-            'rawHeader' => true,
-            'rawFooter' => true,
+            'headerTemplate' => true,
+            'footerTemplate' => true,
             'printBackground' => false,
             'preferCssPageSize' => false,
             'landscape' => true,
@@ -117,10 +117,12 @@ class MpdfRenderer implements RenderersContract
     {
         // TODO: replace | with another character
 
-        if ($this->options->displayHeaderFooter) {
-            $this->mpdf->SetHeader($this->options->rawHeader);
-            $this->mpdf->SetFooter($this->options->rawFooter);
+        if (!$this->options->displayHeaderFooter) {
+            return;
         }
+
+        $this->mpdf->SetHeader($this->options->headerTemplate);
+        $this->mpdf->SetFooter($this->options->footerTemplate);
     }
 
     private function setMetadata(): void
