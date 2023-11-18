@@ -117,7 +117,7 @@ class MpdfRenderer implements RenderersContract
     {
         // TODO: replace | with another character
 
-        if (!$this->options->displayHeaderFooter) {
+        if (! $this->options->displayHeaderFooter) {
             return;
         }
 
