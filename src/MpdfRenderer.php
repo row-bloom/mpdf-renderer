@@ -121,8 +121,8 @@ class MpdfRenderer implements RenderersContract
             return;
         }
 
-        $this->mpdf->SetHeader($this->options->headerTemplate);
-        $this->mpdf->SetFooter($this->options->footerTemplate);
+        $this->mpdf->SetHTMLHeader($this->options->headerTemplate);
+        $this->mpdf->SetHTMLFooter($this->options->footerTemplate);
     }
 
     private function setMetadata(): void
