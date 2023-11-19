@@ -115,8 +115,6 @@ class MpdfRenderer implements RenderersContract
 
     private function setHeaderAndFooter(): void
     {
-        // TODO: escape |
-
         if (! $this->options->displayHeaderFooter) {
             return;
         }
