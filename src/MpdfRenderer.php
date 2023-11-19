@@ -115,13 +115,26 @@ class MpdfRenderer implements RenderersContract
 
     private function setHeaderAndFooter(): void
     {
-        // TODO: replace | with another character
-
         if (! $this->options->displayHeaderFooter) {
             return;
         }
 
-        $this->mpdf->SetHTMLHeader($this->options->headerTemplate);
+        if (! is_null($this->options->headerTemplate)) {
+            $headerTemplate = MpdfDom::fromString($this->options->headerTemplate)
+                ->translateHeaderFooterClasses()
+                ->toHtml();
+
+            $this->mpdf->SetHTMLHeader($headerTemplate);
+        }
+
+        if (! is_null($this->options->footerTemplate)) {
+            $footerTemplate = MpdfDom::fromString($this->options->footerTemplate)
+                ->translateHeaderFooterClasses()
+                ->toHtml();
+
+            $this->mpdf->SetHTMLHeader($footerTemplate);
+        }
+
         $this->mpdf->SetHTMLFooter($this->options->footerTemplate);
     }
 
