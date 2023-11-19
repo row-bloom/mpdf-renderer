@@ -4,6 +4,7 @@ namespace RowBloom\MpdfRenderer;
 
 use Mpdf\HTMLParserMode;
 use Mpdf\Mpdf;
+use RowBloom\ChromePhpRenderer\MpdfConfig;
 use RowBloom\RowBloom\Config;
 use RowBloom\RowBloom\Fs\File;
 use RowBloom\RowBloom\Options;
@@ -114,25 +115,47 @@ class MpdfRenderer implements RenderersContract
             return;
         }
 
-        // configure Chrome PDF viewer behavior chromePdfViewerClassesHandling:bool
-        // TODO: fix {PAGENO} and {nbpg}
+        $this->setHeader();
+        $this->setFooter();
+    }
 
-        if (! is_null($this->options->headerTemplate)) {
-            $headerTemplate = MpdfDom::fromString($this->options->headerTemplate)
-                ->translateHeaderFooterClasses()
-                ->toHtml();
-
-            $this->mpdf->SetHTMLHeader($headerTemplate);
+    private function setHeader(): void
+    {
+        if (is_null($this->options->headerTemplate)) {
+            return;
         }
 
-        if (! is_null($this->options->footerTemplate)) {
-            $footerTemplate = MpdfDom::fromString($this->options->footerTemplate)
-                ->translateHeaderFooterClasses()
-                ->toHtml();
+        if (! $this->enabledChromePdfViewerLikeValuesInjection()) {
+            $this->mpdf->SetHTMLHeader($this->options->headerTemplate);
 
-            $this->mpdf->SetHTMLFooter($footerTemplate);
+            return;
         }
 
-        $this->mpdf->SetHTMLFooter($this->options->footerTemplate);
+        $this->mpdf->SetHTMLHeader(MpdfDom::fromString($this->options->headerTemplate)
+            ->translateHeaderFooterClasses()
+            ->toHtml());
+    }
+
+    private function setFooter(): void
+    {
+        if (is_null($this->options->footerTemplate)) {
+            return;
+        }
+
+        if (! $this->enabledChromePdfViewerLikeValuesInjection()) {
+            $this->mpdf->SetHTMLFooter($this->options->footerTemplate);
+
+            return;
+        }
+
+        $this->mpdf->SetHTMLFooter(MpdfDom::fromString($this->options->footerTemplate)
+            ->translateHeaderFooterClasses()
+            ->toHtml());
+    }
+
+    private function enabledChromePdfViewerLikeValuesInjection(): bool
+    {
+        // TODO: rename all
+        return $this->config->getDriverConfig(MpdfConfig::class)?->chromePdfViewerClassesHandling ?? false;
     }
 }
