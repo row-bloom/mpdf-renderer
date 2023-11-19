@@ -66,7 +66,7 @@ class MpdfDom
     {
         $bodyElement = $this->dom->getElementsByTagName('body')->item(0);
 
-        if(is_null($bodyElement)) {
+        if (is_null($bodyElement)) {
             throw new RowBloomException('Error retrieving the DOM body element');
         }
 

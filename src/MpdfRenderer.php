@@ -115,6 +115,7 @@ class MpdfRenderer implements RenderersContract
         }
 
         // configure Chrome PDF viewer behavior chromePdfViewerClassesHandling:bool
+        // TODO: fix {PAGENO} and {nbpg}
 
         if (! is_null($this->options->headerTemplate)) {
             $headerTemplate = MpdfDom::fromString($this->options->headerTemplate)

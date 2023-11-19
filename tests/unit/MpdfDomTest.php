@@ -15,11 +15,11 @@ test('Dom', function () {
         ->translateHeaderFooterClasses()
         ->toHtml();
 
-    expect($results)
-        ->toContain('{DATE j-m-Y}')
+    expect($results)->not->toContain('body')
         ->toContain('{PAGENO}')
         ->toContain('{nbpg}')
         ->toContain('<span class="title"></span>')
+        ->not->toContain('{DATE j-m-Y}')
         ->not->toContain('<span class="date"></span>')
         ->not->toContain('<span class="pageNumber"></span>')
         ->not->toContain('<span class="totalPages"></span>');
