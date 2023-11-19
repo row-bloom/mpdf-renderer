@@ -44,6 +44,7 @@ class MpdfRenderer implements RenderersContract
             ->save($this->rendering);
     }
 
+    /** @see https://mpdf.github.io/headers-footers/method-2.html */
     public function render(Html $html, Css $css, Options $options, Config $config = null): static
     {
         $this->html = $html;
@@ -112,6 +113,8 @@ class MpdfRenderer implements RenderersContract
         if (! $this->options->displayHeaderFooter) {
             return;
         }
+
+        // configure Chrome PDF viewer behavior chromePdfViewerClassesHandling:bool
 
         if (! is_null($this->options->headerTemplate)) {
             $headerTemplate = MpdfDom::fromString($this->options->headerTemplate)
