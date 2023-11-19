@@ -28,6 +28,19 @@ class MpdfDom
     public function translateHeaderFooterClasses(): static
     {
         // ? url title
+        // ! bug: see input template output template
+        // ✅
+        // '{PAGENO}/{nbpg}'
+        // string(22) "<p>{PAGENO}/{nbpg}</p>"
+        // ✅
+        // '<p>{PAGENO}/{nbpg}</p>'
+        // string(22) "<p>{PAGENO}/{nbpg}</p>"
+        // ❌
+        // '<span class="pageNumber"></span>/<span class="totalPages"></span>'
+        // string(15) "{PAGENO}/{nbpg}"
+        // ❌
+        // '<p><span class="pageNumber"></span>/<span class="totalPages"></span></p>'
+        // string(22) "<p>{PAGENO}/{nbpg}</p>"
 
         return $this->replaceWithTextNode(
             '//*[@class="pageNumber"]',
@@ -37,7 +50,7 @@ class MpdfDom
             '{nbpg}'
         )->replaceWithTextNode(
             '//*[@class="date"]',
-            '{DATE j-m-Y}'
+            date('d/m/Y h:i') // TODO: make date format configurable
         );
     }
 
@@ -64,11 +77,19 @@ class MpdfDom
 
     public function toHtml(): string
     {
-        $htmlString = $this->dom->saveHTML();
+        $bodyElement = $this->dom->getElementsByTagName('body')->item(0);
+
+        if (is_null($bodyElement)) {
+            throw new RowBloomException('Error retrieving the DOM body element');
+        }
+
+        $htmlString = $this->dom->saveHTML($bodyElement);
 
         if ($htmlString === false) {
             throw new RowBloomException('An error occurred while dumping the internal document');
         }
+
+        $htmlString = str_replace(['<body>', '</body>'], '', $htmlString);
 
         return $htmlString;
     }
