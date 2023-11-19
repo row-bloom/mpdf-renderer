@@ -64,11 +64,19 @@ class MpdfDom
 
     public function toHtml(): string
     {
-        $htmlString = $this->dom->saveHTML();
+        $bodyElement = $this->dom->getElementsByTagName('body')->item(0);
+
+        if(is_null($bodyElement)) {
+            throw new RowBloomException('Error retrieving the DOM body element');
+        }
+
+        $htmlString = $this->dom->saveHTML($bodyElement);
 
         if ($htmlString === false) {
             throw new RowBloomException('An error occurred while dumping the internal document');
         }
+
+        $htmlString = str_replace(['<body>', '</body>'], '', $htmlString);
 
         return $htmlString;
     }
