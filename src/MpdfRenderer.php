@@ -55,7 +55,6 @@ class MpdfRenderer implements RenderersContract
 
         $this->setPageFormat();
         $this->setHeaderAndFooter();
-        $this->setMetadata();
 
         $this->mpdf->WriteHTML($this->html);
 
@@ -79,11 +78,6 @@ class MpdfRenderer implements RenderersContract
             'width' => true,
             'height' => true,
             'margin' => true,
-            'metadataTitle' => true,
-            'metadataAuthor' => true,
-            'metadataCreator' => true,
-            'metadataSubject' => true,
-            'metadataKeywords' => true,
         ];
     }
 
@@ -136,14 +130,5 @@ class MpdfRenderer implements RenderersContract
         }
 
         $this->mpdf->SetHTMLFooter($this->options->footerTemplate);
-    }
-
-    private function setMetadata(): void
-    {
-        $this->mpdf->SetTitle($this->options->metadataTitle);
-        $this->mpdf->SetAuthor($this->options->metadataAuthor);
-        $this->mpdf->SetSubject($this->options->metadataSubject);
-        $this->mpdf->SetCreator($this->options->metadataCreator);
-        $this->mpdf->SetKeywords($this->options->metadataKeywords);
     }
 }
