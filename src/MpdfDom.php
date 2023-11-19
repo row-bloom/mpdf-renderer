@@ -28,19 +28,6 @@ class MpdfDom
     public function translateHeaderFooterClasses(): static
     {
         // ? url title
-        // ! bug: see input template output template
-        // ✅
-        // '{PAGENO}/{nbpg}'
-        // string(22) "<p>{PAGENO}/{nbpg}</p>"
-        // ✅
-        // '<p>{PAGENO}/{nbpg}</p>'
-        // string(22) "<p>{PAGENO}/{nbpg}</p>"
-        // ❌
-        // '<span class="pageNumber"></span>/<span class="totalPages"></span>'
-        // string(15) "{PAGENO}/{nbpg}"
-        // ❌
-        // '<p><span class="pageNumber"></span>/<span class="totalPages"></span></p>'
-        // string(22) "<p>{PAGENO}/{nbpg}</p>"
 
         return $this->replaceWithTextNode(
             '//*[@class="pageNumber"]',
