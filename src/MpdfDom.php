@@ -37,7 +37,7 @@ class MpdfDom
             '{nbpg}'
         )->replaceWithTextNode(
             '//*[@class="date"]',
-            '{DATE j-m-Y}'
+            date('d/m/Y h:i') // TODO: make it configurable
         );
     }
 
