@@ -1,6 +1,6 @@
 <?php
 
-namespace RowBloom\ChromePhpRenderer;
+namespace RowBloom\MpdfRenderer;
 
 class MpdfConfig
 {

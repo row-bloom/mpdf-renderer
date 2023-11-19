@@ -4,7 +4,6 @@ namespace RowBloom\MpdfRenderer;
 
 use Mpdf\HTMLParserMode;
 use Mpdf\Mpdf;
-use RowBloom\ChromePhpRenderer\MpdfConfig;
 use RowBloom\RowBloom\Config;
 use RowBloom\RowBloom\Fs\File;
 use RowBloom\RowBloom\Options;
