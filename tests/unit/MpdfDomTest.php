@@ -19,7 +19,7 @@ test('Dom', function () {
         ->toContain('{PAGENO}')
         ->toContain('{nbpg}')
         ->toContain('<span class="title"></span>')
-        ->not->toContain('{DATE j-m-Y}')
+        ->toContain(date('d/m/Y'))
         ->not->toContain('<span class="date"></span>')
         ->not->toContain('<span class="pageNumber"></span>')
         ->not->toContain('<span class="totalPages"></span>');
