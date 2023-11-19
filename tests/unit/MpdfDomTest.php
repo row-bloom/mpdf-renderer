@@ -25,7 +25,7 @@ it('substitutes special class elements', function () {
         ->not->toContain('<span class="totalPages"></span>');
 });
 
-test('prod bug', function () {
+it('outputs same string for {PAGENO}/{nbpg}', function () {
     $output1 = MpdfDom::fromString('{PAGENO}/{nbpg}')
         ->translateHeaderFooterClasses()
         ->toHtml();
