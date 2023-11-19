@@ -126,7 +126,7 @@ class MpdfRenderer implements RenderersContract
                 ->translateHeaderFooterClasses()
                 ->toHtml();
 
-            $this->mpdf->SetHTMLHeader($footerTemplate);
+            $this->mpdf->SetHTMLFooter($footerTemplate);
         }
 
         $this->mpdf->SetHTMLFooter($this->options->footerTemplate);
