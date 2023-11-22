@@ -130,7 +130,7 @@ class MpdfRenderer implements RenderersContract
             return;
         }
 
-        $this->mpdf->SetHTMLHeader(MpdfDom::fromString($this->options->headerTemplate)
+        $this->mpdf->SetHTMLHeader(MpdfDomTransformer::fromString($this->options->headerTemplate)
             ->translateHeaderFooterClasses()
             ->toHtml());
     }
@@ -147,7 +147,7 @@ class MpdfRenderer implements RenderersContract
             return;
         }
 
-        $this->mpdf->SetHTMLFooter(MpdfDom::fromString($this->options->footerTemplate)
+        $this->mpdf->SetHTMLFooter(MpdfDomTransformer::fromString($this->options->footerTemplate)
             ->translateHeaderFooterClasses()
             ->toHtml());
     }

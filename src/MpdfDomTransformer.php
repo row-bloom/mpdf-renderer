@@ -6,7 +6,7 @@ use DOMDocument;
 use DOMXPath;
 use RowBloom\RowBloom\RowBloomException;
 
-class MpdfDom
+class MpdfDomTransformer
 {
     private DOMDocument $dom;
 

@@ -1,6 +1,6 @@
 <?php
 
-use RowBloom\MpdfRenderer\MpdfDom;
+use RowBloom\MpdfRenderer\MpdfDomTransformer;
 
 it('substitutes special class elements', function () {
     $htmlString = '
@@ -11,7 +11,7 @@ it('substitutes special class elements', function () {
         <span class="totalPages"></span>
     ';
 
-    $results = MpdfDom::fromString($htmlString)
+    $results = MpdfDomTransformer::fromString($htmlString)
         ->translateHeaderFooterClasses()
         ->toHtml();
 
@@ -26,11 +26,11 @@ it('substitutes special class elements', function () {
 });
 
 it('outputs same string for {PAGENO}/{nbpg}', function () {
-    $output1 = MpdfDom::fromString('{PAGENO}/{nbpg}')
+    $output1 = MpdfDomTransformer::fromString('{PAGENO}/{nbpg}')
         ->translateHeaderFooterClasses()
         ->toHtml();
 
-    $output2 = MpdfDom::fromString('<p><span class="pageNumber"></span>/<span class="totalPages"></span></p>')
+    $output2 = MpdfDomTransformer::fromString('<p><span class="pageNumber"></span>/<span class="totalPages"></span></p>')
         ->translateHeaderFooterClasses()
         ->toHtml();
 
