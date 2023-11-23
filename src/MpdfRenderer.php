@@ -52,7 +52,12 @@ class MpdfRenderer implements RenderersContract
         $this->options = $options;
         $this->config = $config ?? $this->config;
 
-        $this->mpdf = new Mpdf($this->getMargin());
+        $this->mpdf = new Mpdf($this->getMargin() + [
+            'default_font_size' => 12,
+            'margin_header' => 5,
+            'margin_footer' => 5,
+            // 'default_font' => '',
+        ]);
 
         $this->setPageFormat();
         $this->setHeaderAndFooter();
@@ -103,8 +108,6 @@ class MpdfRenderer implements RenderersContract
             'margin_right' => $margin->getRaw('marginRight'),
             'margin_bottom' => $margin->getRaw('marginBottom'),
             'margin_left' => $margin->getRaw('marginLeft'),
-            // 'margin_header' => 0,
-            // 'margin_footer' => 0,
         ];
     }
 
