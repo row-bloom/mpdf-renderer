@@ -1,0 +1,38 @@
+{
+    "name": "row-bloom/mpdf-renderer",
+    "description": "row-bloom mPDF renderer driver",
+    "keywords": [
+        "pdf",
+        "rendering"
+    ],
+    "homepage": "https://github.com/row-bloom/mpdf-renderer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "medilies",
+            "email": "medilies.contact@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "mpdf/mpdf": "^8.1"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "RowBloom\\MpdfRenderer\\": "/"
+        }
+    },
+    "autoload-dev": {},
+    "scripts": {},
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
